@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портали деҳаи Нилкон</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Портали деҳаи Нилкон 🌳</h1>
+    <nav>
+      <a href="#news">Хабарҳо</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#video">Видео</a>
+      <a href="#map">Харита</a>
+      <a href="#contact">Тамос</a>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <!-- Хабарҳо -->
+    <section id="news" class="section">
+      <h2>Хабарҳо</h2>
+      <div id="newsContainer"></div>
+    </section>
+
+    <!-- Галерея -->
+    <section id="gallery" class="section">
+      <h2>Галереяи деҳа</h2>
+      <div class="gallery">
+        <img src="images/nilkon.jpg" alt="Нилкон">
+        <img src="images/photo2.jpg" alt="Акс2">
+        <img src="images/photo3.jpg" alt="Акс3">
+      </div>
+    </section>
+
+    <!-- Видео -->
+    <section id="video" class="section">
+      <h2>Видеоҳои деҳа</h2>
+      <div class="videos">
+        <video controls>
+          <source src="videos/video1.mp4" type="video/mp4">
+        </video>
+        <iframe width="100%" height="300" 
+          src="https://www.youtube.com/embed/VIDEO_ID" 
+          frameborder="0" allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Харита -->
+    <section id="map" class="section">
+      <h2>Харитаи деҳа</h2>
+      <iframe class="map" 
+        src="https://maps.google.com/maps?q=Rudaki%20district%20tajikistan&t=&z=13&ie=UTF8&iwloc=&output=embed">
+      </iframe>
+    </section>
+
+    <!-- Тамос -->
+    <section id="contact" class="section">
+      <h2>Тамос бо мо</h2>
+      <p>Email: nilkon@gmail.com</p>
+      <p>Телефон: +992...</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Деҳаи Нилкон. Ҳуқуқҳо ҳифз шудаанд.</p>
+  </footer>
+
+  <script>
+    // Хабарҳоро аз news.json мегирад
+    fetch('news.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('newsContainer');
+        data.forEach(item => {
+          const div = document.createElement('div');
+          div.classList.add('newsItem');
+          div.innerHTML = <h3>${item.title}</h3><p>${item.content}</p>;
+          container.appendChild(div);
+        });
+      })
+      .catch(err => console.error("Хатогӣ дар боргирии хабарҳо:", err));
+  </script>
+</body>
+</html>
